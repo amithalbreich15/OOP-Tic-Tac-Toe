@@ -1,0 +1,56 @@
+amithalbreich
+208917393
+
+Explanation about Player Strategy:
+WhateverPlayer - whatever player places his mark randomly by picking a random row and col indices from the range of
+the board's given size, first it looks for all the BLANK Spots and only then selects one of the available spots
+randomly.
+
+CleverPlayer - clever player places its mark on the next available and valid coordinate on the game board according to
+rows (in order of a "nested 2 loops" loop) that first covers rows, will skip taken coordinates which aren't available.
+
+GeniusPlayer - Genius player will first try to block other opponent's win streak (for rows first) if he is starting 2nd.
+this is a defending strategy. If genius starts the game (I check if all marks on the board are blank) he will try to put
+the marks on the Diagonal main line and if he gets blocked by clever or what ever he will try to put his mark
+vertically to create a streak. If none of the above happens he will put a mark in a random coordinate on the board.
+If genius starts second and he already blocked the opponent (he will try to block clever's horizontal streak) he will
+try to create his own diagonal or vertical streak in order to win.
+
+Q: What is The advantage in Program Design in the way that each one of the Player Classes implements a shared interface?
+A: The advantages in such Program Design is that if we have a lot of Objects/Classes that are not exactly the same
+but they share a lot of common characteristics and share a lot of common abilities we can put them under same
+Interface because they are closely related and has the same methods. e.g they can do the same actions so they will share
+common methods but will do them a bit differently per class.
+In our case each one of the player types has to have the Method playTurn because they all need to take their turn
+but each player has a different strategy which differs from the others and using Interfaces allow it to happen :)
+
+Examples for tournaments of 10,000 games run:
+
+CleverPlayer vs. WhateverPlayer:
+
+######## Results #########
+Player 1, clever won: 8493 rounds
+Player 2, whatever won: 1493 rounds
+Ties: 14
+
+CleverPlayer vs. GeniusPlayer:
+
+######## Results #########
+Player 1, clever won: 0 rounds
+Player 2, genius won: 10000 rounds
+Ties: 0
+
+WhateverPlayer vs. WhateverPlayer:
+
+######## Results #########
+Player 1, whatever won: 4837 rounds
+Player 2, whatever won: 4997 rounds
+Ties: 166
+
+GeniusPlayer vs. WhateverPlayer:
+
+######## Results #########
+Player 1, GENIUS won: 7813 rounds
+Player 2, whatever won: 2048 rounds
+Ties: 139
+
